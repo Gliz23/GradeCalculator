@@ -11,33 +11,48 @@ namespace GradeCalculator
         static void Main(string[] args)
         {
 
-            Console.Write("Enter a numerical grade (0-100): ");
-            int numericalGrade = int.Parse(Console.ReadLine());
+            while (true)
+            {
+                Console.Write("Enter your numerical grade (0-100) or press Enter to exit: ");
+                string input = Console.ReadLine();
 
-       
-            string letterGrade;
-            if (numericalGrade >= 90)
-            {
-                letterGrade = "A";
-            }
-            else if (numericalGrade >= 80)
-            {
-                letterGrade = "B";
-            }
-            else if (numericalGrade >= 70)
-            {
-                letterGrade = "C";
-            }
-            else if (numericalGrade >= 60)
-            {
-                letterGrade = "D";
-            }
-            else
-            {
-                letterGrade = "F";
-            }
+                if (string.IsNullOrEmpty(input))
+                {
+                
+                    return;
+                }
 
-            Console.WriteLine("Your letter grade is: " + letterGrade);
+                if (int.TryParse(input, out int grade) && grade >= 0 && grade <= 100)
+                {
+
+                    if (grade >= 90)
+                    {
+                        Console.WriteLine("Your letter grade is: A");
+                    }
+                    else if (grade >= 80)
+                    {
+                        Console.WriteLine("Your letter grade is: B");
+                    }
+                    else if (grade >= 70)
+                    {
+                        Console.WriteLine("Your letter grade is: C");
+                    }
+                    else if (grade >= 60)
+                    {
+                        Console.WriteLine("Your letter grade is: D");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your letter grade is: F");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error: Invalid input. Please enter a number between 0 and 100.");
+                }
+
+                Console.WriteLine(); 
+            }
         }
     }
 }
